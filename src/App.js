@@ -50,19 +50,23 @@ class App extends Component {
       id: Math.random()
     };
 
-    this.setState(prevState => ({ cart: [...prevState.cart, cartItem] }))
+    this.setState(prevState => ({ cart: [...prevState.cart, cartItem] }), this.calculateTotal);
   }
 
   removeFromCart = (itemId) => {
     const newCart = this.state.cart.filter(p => (p.id !== itemId))
-    this.setState({ cart: newCart })
+    this.setState(() => ({ cart: newCart }), this.calculateTotal);
   }
 
 
   calculateTotal = () => {
-    return this.state.cart.reduce((accumulator, currentValue) => {
-      return accumulator + currentValue.price;
-    }, 0)
+    const newTotal = this.state.cart.reduce((accumulator, currentValue) => {
+      return accumulator + parseInt(currentValue.price);
+    }, 0);
+
+    this.setState({ cartTotal: newTotal });
+
+
   }
 
   // TODO if time allows
