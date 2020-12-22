@@ -4,7 +4,8 @@ const URL = 'https://spreadsheets.google.com/feeds/list/1Cp0owZ_71huZOBLiX57hKTv
 
 export default class Products extends Component {
   state = {
-    products: []
+    products: [],
+    isLoading: true
   };
 
   fetchProducts() {
@@ -27,7 +28,7 @@ export default class Products extends Component {
       }
     ))
 
-    this.setState({ products })
+    this.setState(() => ({ products, isLoading: false }));
   }
 
   componentDidMount() {
@@ -38,6 +39,7 @@ export default class Products extends Component {
     return (
       <div className="Products">
         <h1>Products</h1>
+        {this.state.isLoading ? "Loading Products..." : this.renderProducts()}
       </div>
     );
   }
