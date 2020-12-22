@@ -1,4 +1,5 @@
 import React from 'react';
+import './CartItem.css';
 
 export default function CartItem(props) {
   const { title, price } = props.product;
@@ -6,8 +7,9 @@ export default function CartItem(props) {
 
   return (
     <div className="CartItem">
-      <button onClick={() => removeFromCart(props.product)}>Remove</button>
-      <p>{title} - <span>${price}</span></p>
+      <button onClick={() => removeFromCart(props.product.id)}>Remove</button>
+      <p>{title}</p>
+      <span>${price}</span>
     </div>
   );
 }
