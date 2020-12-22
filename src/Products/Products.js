@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Product from '../Product/Product';
 
 const URL = 'https://spreadsheets.google.com/feeds/list/1Cp0owZ_71huZOBLiX57hKTvxKYEo4qZC1y_IAHV6rX4/od6/public/values?alt=json';
 
@@ -32,10 +33,20 @@ export default class Products extends Component {
   }
 
   componentDidMount() {
+    console.log('fetching')
     this.fetchProducts();
+
+  }
+
+  renderProducts() {
+    return this.state.products.map(p => (
+      <Product key={p.id} {...p} />
+    ))
   }
 
   render() {
+    console.log('render')
+    console.log(this.state.products)
     return (
       <div className="Products">
         <h1>Products</h1>
