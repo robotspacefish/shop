@@ -1,0 +1,9 @@
+.NavBar {
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px;
+}
+
+.NavBar a {
+  margin: 0 20px;
+}

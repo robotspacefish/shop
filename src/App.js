@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Products from './Products/Products';
 import Cart from './Cart/Cart';
+import NavBar from './NavBar/NavBar';
+import { Switch, Route } from 'react-router-dom';
 import './App.css';
 
 const URL = 'https://spreadsheets.google.com/feeds/list/1Cp0owZ_71huZOBLiX57hKTvxKYEo4qZC1y_IAHV6rX4/od6/public/values?alt=json';
@@ -74,27 +76,24 @@ class App extends Component {
   //   return this.state.cart.find(item => item.id === itemId)
   // }
 
-
-
-
   render() {
+    const totalCartItems = this.state.cart.length;
+
     return (
       <div className="App">
-        {
-          this.state.isLoading ?
-            "Loading Products..." :
-            <Products
-              products={this.state.products}
-              addToCart={this.addToCart}
-            />
-        }
+        <NavBar totalCartItems={totalCartItems} />
 
-        <hr></hr>
-        <Cart
-          cart={this.state.cart}
-          cartTotal={this.state.cartTotal}
-          removeFromCart={this.removeFromCart}
-        />
+        <Switch>
+          <Route exact path="/" render={() => <Products
+            products={this.state.products}
+            addToCart={this.addToCart}
+          />} />
+          <Route exact path="/cart" render={() => <Cart
+            cart={this.state.cart}
+            cartTotal={this.state.cartTotal}
+            removeFromCart={this.removeFromCart}
+          />} />
+        </Switch>
       </div>
     );
   }
