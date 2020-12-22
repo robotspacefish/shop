@@ -1,3 +1,27 @@
+## Products
+* Display List of all products
+
+## Product
+* Display single product name, price, description
+* Displays 'Add to Cart' button if item is in stock, 'Out of Stock' if not
+
+## Cart
+* Displays Cart total $
+* Displays List of all products in cart
+* Displays 'Your cart is empty!' if nothing is in cart
+
+## CartItem
+* Displays Name, Price of item
+* Displays 'Remove' button to remove item from cart
+
+## NavBar
+* Contains Links for 'Products' and 'View Cart' routes
+* Displays total items in cart
+
+## App
+* Contains all state/logic
+---
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

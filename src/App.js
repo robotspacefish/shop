@@ -31,7 +31,7 @@ class App extends Component {
         price: p.gsx$priceincents.$t,
         availability: p.gsx$availability.$t,
         description: p.gsx$description.$t,
-        id: i
+        id: i /** set id to index value in case I needed one */
       }
     ))
 
@@ -44,6 +44,12 @@ class App extends Component {
 
   }
 
+  /**
+   * create and store cart object using necessary product info
+   * 'id' is set to Math.random() because it quick/easy for this assignment
+   * 'qty' is unused elsewhere - I intended to make it so you can add/remove qty of a
+   * product if time allowed
+   */
   addToCart = (item) => {
     const cartItem = {
       title: item.title,
@@ -55,8 +61,10 @@ class App extends Component {
     this.setState(prevState => ({ cart: [...prevState.cart, cartItem] }), this.calculateTotal);
   }
 
+  /** filter out item to remove by the item's id */
   removeFromCart = (itemId) => {
-    const newCart = this.state.cart.filter(p => (p.id !== itemId))
+    const newCart = this.state.cart.filter(p => (p.id !== itemId));
+
     this.setState(() => ({ cart: newCart }), this.calculateTotal);
   }
 
