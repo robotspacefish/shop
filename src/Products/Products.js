@@ -3,11 +3,11 @@ import Product from '../Product/Product';
 import './Products.css';
 
 export default function Products(props) {
-  const { products } = props;
+  const { products, addToCart } = props;
 
   const renderProducts = () => (
     products.map(p => (
-      <Product key={p.id} {...p} />
+      <Product key={p.id} product={p} addToCart={addToCart} />
     ))
   );
 

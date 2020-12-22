@@ -7,6 +7,8 @@ const URL = 'https://spreadsheets.google.com/feeds/list/1Cp0owZ_71huZOBLiX57hKTv
 class App extends Component {
   state = {
     products: [],
+    cart: [],
+    cartTotal: 0,
     isLoading: true
   };
 
@@ -39,6 +41,23 @@ class App extends Component {
 
   }
 
+  addToCart = (item) => {
+    const cartItem = {
+      title: item.title,
+      price: item.price,
+      qty: 1
+    };
+
+    this.setState(prevState => ({ cart: [...prevState.cart, cartItem] }))
+  }
+
+  // TODO if time allows
+  // isItemInCart(itemId) {
+  //   return this.state.cart.find(item => item.id === itemId)
+  // }
+
+
+
   render() {
     return (
       <div className="App">
@@ -46,7 +65,11 @@ class App extends Component {
 
         {
           this.state.isLoading ?
-            "Loading Products..." : <Products products={this.state.products} />
+            "Loading Products..." :
+            <Products
+              products={this.state.products}
+              addToCart={this.addToCart}
+            />
         }
       </div>
     );

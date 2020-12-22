@@ -1,7 +1,10 @@
 import React from 'react';
 import './Product.css';
 
-export default function Product({ title, price, availability, description }) {
+export default function Product(props) {
+  const { title, price, availability, description, id } = props.product;
+  const { addToCart } = props;
+
   return (
     <div className="Product">
       <h2>{title}</h2>
@@ -10,7 +13,7 @@ export default function Product({ title, price, availability, description }) {
       <p>{description}</p>
       {
         availability === "in_stock" ?
-          <button>Add To Cart</button> :
+          <button onClick={() => addToCart(props.product)}>Add To Cart</button> :
           <span>Out of Stock</span>
       }
     </div>
