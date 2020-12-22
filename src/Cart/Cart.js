@@ -1,5 +1,6 @@
 import React from 'react';
 import CartItem from '../CartItem/CartItem';
+import './Cart.css';
 
 export default function Cart(props) {
   const renderCart = () => {
@@ -9,9 +10,9 @@ export default function Cart(props) {
   };
 
   return (
-    <div className="cart">
+    <div className="Cart">
       <h1>Cart</h1>
-      <h4>Total: <span>${props.cartTotal}</span></h4>
+      <h4 className="Cart__total">Total: <span>${props.cartTotal}</span></h4>
 
       <hr />
 
