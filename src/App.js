@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Products from './Products/Products';
+import Cart from './Cart/Cart';
 import './App.css';
 
 const URL = 'https://spreadsheets.google.com/feeds/list/1Cp0owZ_71huZOBLiX57hKTvxKYEo4qZC1y_IAHV6rX4/od6/public/values?alt=json';
@@ -45,7 +46,8 @@ class App extends Component {
     const cartItem = {
       title: item.title,
       price: item.price,
-      qty: 1
+      qty: 1,
+      id: Math.random()
     };
 
     this.setState(prevState => ({ cart: [...prevState.cart, cartItem] }))
