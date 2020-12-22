@@ -51,6 +51,13 @@ class App extends Component {
     this.setState(prevState => ({ cart: [...prevState.cart, cartItem] }))
   }
 
+
+  calculateTotal = () => {
+    return this.state.cart.reduce((accumulator, currentValue) => {
+      return accumulator + currentValue.price;
+    }, 0)
+  }
+
   // TODO if time allows
   // isItemInCart(itemId) {
   //   return this.state.cart.find(item => item.id === itemId)
@@ -58,11 +65,10 @@ class App extends Component {
 
 
 
+
   render() {
     return (
       <div className="App">
-        <a href="#">Cart</a>
-
         {
           this.state.isLoading ?
             "Loading Products..." :
