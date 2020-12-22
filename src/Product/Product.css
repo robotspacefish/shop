@@ -3,4 +3,14 @@
   margin: 10px;
   padding: 10px;
   width: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+.Product__info {
+  flex: 1;
+}
+
+.out-of-stock {
+  color: red;
 }
