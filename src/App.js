@@ -51,6 +51,11 @@ class App extends Component {
     this.setState(prevState => ({ cart: [...prevState.cart, cartItem] }))
   }
 
+  removeFromCart = (itemId) => {
+    const newCart = this.state.cart.filter(p => (p.id !== itemId))
+    this.setState({ cart: newCart })
+  }
+
 
   calculateTotal = () => {
     return this.state.cart.reduce((accumulator, currentValue) => {
@@ -77,6 +82,13 @@ class App extends Component {
               addToCart={this.addToCart}
             />
         }
+
+        <hr></hr>
+        <Cart
+          cart={this.state.cart}
+          cartTotal={this.state.cartTotal}
+          removeFromCart={this.removeFromCart}
+        />
       </div>
     );
   }
