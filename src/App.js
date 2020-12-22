@@ -60,21 +60,24 @@ class App extends Component {
     this.setState(() => ({ cart: newCart }), this.calculateTotal);
   }
 
-
   calculateTotal = () => {
     const newTotal = this.state.cart.reduce((accumulator, currentValue) => {
       return accumulator + parseInt(currentValue.price);
     }, 0);
 
     this.setState({ cartTotal: newTotal });
-
-
   }
 
   // TODO if time allows
   // isItemInCart(itemId) {
   //   return this.state.cart.find(item => item.id === itemId)
   // }
+
+  renderProducts() {
+    return (
+      <Products products={this.state.products} addToCart={this.addToCart} />
+    );
+  }
 
   render() {
     const totalCartItems = this.state.cart.length;
@@ -84,15 +87,13 @@ class App extends Component {
         <NavBar totalCartItems={totalCartItems} />
 
         <Switch>
-          <Route exact path="/" render={() => <Products
-            products={this.state.products}
-            addToCart={this.addToCart}
-          />} />
-          <Route exact path="/cart" render={() => <Cart
-            cart={this.state.cart}
-            cartTotal={this.state.cartTotal}
-            removeFromCart={this.removeFromCart}
-          />} />
+          <Route exact path="/" render={() => (
+            this.state.isLoading ? "Loading..." : this.renderProducts()
+          )} />
+
+          <Route exact path="/cart" render={() => (
+            <Cart cart={this.state.cart} cartTotal={this.state.cartTotal} removeFromCart={this.removeFromCart} />
+          )} />
         </Switch>
       </div>
     );
